@@ -27,6 +27,9 @@ RUN        --mount=type=cache,target=/var/cache/apt,sharing=locked,id=var-cache-
            --mount=type=bind,from=build-scripts,source=/build-scripts,target=/build-scripts \
            sh /build-scripts/postfix-install.sh
 
+# ========= In case docker-init.d is used instead of docker-init.db ==========
+RUN ln -s /docker-init.db /docker-init.d
+
 # ============================ BUILD SASL XOAUTH2 ============================
 FROM base AS sasl
 
